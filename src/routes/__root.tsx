@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
-import interUrl from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
+import serifUrl from "@fontsource-variable/literata/files/literata-latin-wght-normal.woff2?url";
+import sansUrl from "@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2?url";
 import appCss from "@/styles.css?url";
 import { profile } from "@/content";
 
@@ -20,7 +21,8 @@ export const Route = createRootRoute({
       { name: "color-scheme", content: "light dark" },
     ],
     links: [
-      { rel: "preload", href: interUrl, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+      { rel: "preload", href: sansUrl, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+      { rel: "preload", href: serifUrl, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/photo.jpg" },
     ],

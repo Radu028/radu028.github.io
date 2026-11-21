@@ -1,35 +1,50 @@
 @import "tailwindcss";
-@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/literata/wght.css";
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+/* One line each in the seven-language figure; the browser fetches these only for that text. */
+@import "@fontsource/noto-sans-arabic/arabic-400.css";
+@import "@fontsource/noto-sans-devanagari/devanagari-400.css";
 
-/* Colors follow the system light/dark setting; Tailwind's dark: variant uses the same media query. */
+/* Colors follow the system light/dark setting. */
 :root {
   --background: #ffffff;
-  --foreground: #18181b;
-  --body: #3f3f46;
-  --muted: #71717a;
-  --accent: #1d4ed8;
-  --border: #e4e4e7;
+  --foreground: #14171a;
+  --body: #3b4148;
+  --muted: #6b727a;
+  --accent: #2443c9;
+  --star: #b3261e;
+  --border: #e3e6ea;
+  --tint: #f5f6f8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0b;
-    --foreground: #fafafa;
-    --body: #d4d4d8;
-    --muted: #a1a1aa;
-    --accent: #8fb0ff;
-    --border: #27272a;
+    --background: #111417;
+    --foreground: #f2f4f6;
+    --body: #c8cdd3;
+    --muted: #8f97a0;
+    --accent: #93a8ff;
+    --star: #ff8a7f;
+    --border: #272c32;
+    --tint: #181c20;
   }
 }
 
 @theme inline {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Literata Variable", Georgia, serif;
+  --font-arabic: "Noto Sans Arabic", sans-serif;
+  --font-devanagari: "Noto Sans Devanagari", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-body: var(--body);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
+  --color-star: var(--star);
   --color-border: var(--border);
+  --color-tint: var(--tint);
 }
 
 html {
