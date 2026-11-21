@@ -1,85 +1,100 @@
 import type { ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { lastUpdated, me, profile, works, type Work } from "@/content";
+import { currentWork, lastUpdated, me, papers, profile, type Paper } from "@/content";
 
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
   return (
-    <main className="mx-auto max-w-[640px] px-4 pt-9 pb-24 font-sans text-base leading-[1.62] text-body sm:pt-24">
-      <header className="flex items-center gap-4.5">
-        <img
-          src={profile.photo}
-          alt={profile.name}
-          width={72}
-          height={72}
-          className="size-16 shrink-0 rounded-full object-cover sm:size-18"
-        />
-        <div>
-          <h1 className="font-serif text-[27px] leading-[1.15] font-medium tracking-[-0.01em] text-foreground sm:text-[32px]">
-            {profile.name}
-          </h1>
-          <div className="mt-1 leading-snug text-muted">{profile.role}</div>
-        </div>
-      </header>
-
-      <p className="mt-9 font-serif text-[19px] leading-normal text-foreground">{profile.lede}</p>
-      <p className="mt-3">{profile.aside}</p>
-
-      <nav className="mt-6 flex flex-wrap gap-x-5 gap-y-1 font-medium">
-        <A href={`mailto:${profile.email}`}>{profile.email}</A>
-        {profile.links.map((l) => (
-          <A key={l.label} href={l.href}>
-            {l.label}
-          </A>
-        ))}
-      </nav>
-
-      <section className="mt-16">
-        {works.map((work) => (
-          <WorkEntry key={work.title} work={work} />
-        ))}
-      </section>
-
-      <footer className="mt-10 text-sm text-muted">Last updated {lastUpdated}</footer>
-    </main>
-  );
-}
-
-function WorkEntry({ work }: { work: Work }) {
-  return (
-    <article className="border-t border-border py-7">
-      <h2 className="font-serif text-[20px] leading-[1.35] font-medium text-foreground">
-        {work.href ? (
-          <a href={work.href} className="hover:text-accent">
-            {work.title}
-          </a>
-        ) : (
-          work.title
-        )}
-      </h2>
-      <div className="mt-1.5">
-        {work.authors
-          ? work.authors.map((a, i) => (
-              <span key={a}>
-                {i > 0 && ", "}
-                {a === me ? <b className="font-semibold text-foreground">{a}</b> : a}
-              </span>
-            ))
-          : work.byline}
-      </div>
-      <div className="text-muted">{work.status}</div>
-      <p className="mt-2.5">{work.summary}</p>
-      {work.links.length > 0 && (
-        <div className="mt-2 flex gap-5 font-medium">
-          {work.links.map((l) => (
+    <main className="mx-auto max-w-[800px] px-4 pt-8 pb-20 font-sans text-[15.5px] leading-[1.6] text-body sm:pt-14">
+      <header className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+        <h1 className="text-[26px] font-semibold tracking-[-0.01em] text-foreground">
+          {profile.name}
+        </h1>
+        <nav className="flex flex-wrap gap-x-5 gap-y-1">
+          <A href={`mailto:${profile.email}`}>Email</A>
+          {profile.links.map((l) => (
             <A key={l.label} href={l.href}>
               {l.label}
             </A>
           ))}
+        </nav>
+      </header>
+
+      <section className="mt-8 flex flex-col gap-6 sm:flex-row sm:gap-8">
+        <img
+          src={profile.photo}
+          alt={profile.name}
+          width={176}
+          height={176}
+          className="size-32 shrink-0 rounded-md object-cover sm:size-44"
+        />
+        <div className="space-y-3.5">
+          {profile.bio.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+          <p className="text-muted">{profile.email}</p>
         </div>
-      )}
-    </article>
+      </section>
+
+      <Section title="Publications">
+        <ul className="space-y-5">
+          {papers.map((paper) => (
+            <PaperItem key={paper.title} paper={paper} />
+          ))}
+        </ul>
+      </Section>
+
+      <Section title="Current work">
+        <p>
+          <span className="font-semibold text-foreground">{currentWork.title}.</span>{" "}
+          {currentWork.text}
+        </p>
+      </Section>
+
+      <footer className="mt-14 border-t border-border pt-4 text-[13px] text-muted">
+        Last updated {lastUpdated}
+      </footer>
+    </main>
+  );
+}
+
+function Section({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="mt-11">
+      <h2 className="mb-3.5 text-[19px] font-semibold text-foreground">{title}</h2>
+      {children}
+    </section>
+  );
+}
+
+function PaperItem({ paper }: { paper: Paper }) {
+  return (
+    <li>
+      <a
+        href={paper.href}
+        className="font-medium text-accent hover:underline hover:underline-offset-3"
+      >
+        {paper.title}
+      </a>
+      <div>
+        {paper.authors.map((a, i) => (
+          <span key={a}>
+            {i > 0 && ", "}
+            {a === me ? <b className="font-semibold text-foreground">{a}</b> : a}
+          </span>
+        ))}
+      </div>
+      <div className="text-muted">
+        {paper.venue}
+        {paper.links.map((l) => (
+          <span key={l.label}>
+            {" "}
+            [<A href={l.href}>{l.label}</A>]
+          </span>
+        ))}
+      </div>
+    </li>
   );
 }
 
