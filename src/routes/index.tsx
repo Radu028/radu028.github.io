@@ -48,7 +48,11 @@ function Home() {
         </div>
       </header>
 
-      <p className="mt-8">{profile.bio}</p>
+      <div className="mt-8 space-y-3">
+        {profile.bio.map((p) => (
+          <p key={p}>{p}</p>
+        ))}
+      </div>
 
       <Section title="Publications">
         <ol className="space-y-4">
@@ -117,6 +121,7 @@ function PaperItem({ paper }: { paper: Paper }) {
           </span>
         ))}
       </div>
+      <p className="mt-1 text-muted">{paper.result}</p>
     </li>
   );
 }

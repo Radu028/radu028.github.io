@@ -15,7 +15,10 @@ export const profile = {
     { label: "GitHub", href: "https://github.com/Radu028" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/radupopa28/" },
   ],
-  bio: "I work on multimodal models and language models: vision-language models across languages with Radu Tudor Ionescu, and small language models for Romanian with Sergiu Nisioi.",
+  bio: [
+    "I work on multimodal models and language models. I am ranked first of 282 students in my year.",
+    "I started research in May 2026. In the seven months since, I have been first author of two papers on Romanian language models, with Sergiu Nisioi, and co-first author of PaMuk-Bench, a vision-language benchmark in seven languages, with Radu Tudor Ionescu. I do this alongside a full-time job as a software engineer and weekly teaching at my faculty.",
+  ],
 };
 
 type Link = { label: string; href: string };
@@ -26,6 +29,8 @@ export type Paper = {
   /** The name equal to `me` is set in bold. */
   authors: string[];
   venue: string;
+  /** One sentence with the main result. */
+  result: string;
   links: Link[];
 };
 
@@ -35,6 +40,8 @@ export const papers: Paper[] = [
     href: "https://arxiv.org/abs/2611.17836",
     authors: [me, "Valentin Feroiu", "Adina Camelia Bleotu", "Sergiu Nisioi"],
     venue: "Preprint, 2026.",
+    result:
+      "The first Romanian benchmark of minimal pairs written by linguists and tested on native speakers: 50 phenomena, over 6,400 pairs, over 40,000 human judgments.",
     links: [{ label: "arXiv", href: "https://arxiv.org/abs/2611.17836" }],
   },
   {
@@ -42,6 +49,8 @@ export const papers: Paper[] = [
     href: "https://openreview.net/forum?id=JitnCb895x",
     authors: [me, "Adina Camelia Bleotu", "Sergiu Nisioi"],
     venue: "NeurIPS 2026 Workshop on Linguistic Principles for Foundation Models (LP4FM), poster.",
+    result:
+      "A corpus of 10M words from 2,100 hours of Romanian children's video, ten times larger than any Romanian dataset of its kind before it, with language models trained on it from scratch.",
     links: [
       { label: "paper", href: "https://openreview.net/forum?id=JitnCb895x" },
       { label: "code", href: "https://github.com/Radu028/ro-childlm" },
@@ -51,7 +60,7 @@ export const papers: Paper[] = [
 
 export const currentWork = {
   title: "PaMuk-Bench",
-  text: "A parallel benchmark for vision-language tasks in seven languages, with Radu Tudor Ionescu and a team of 13 researchers. I led the captioning study and built the method that taught three image generators six more languages, by distilling each model's own English behavior into its text encoder.",
+  text: "The first parallel benchmark to cover five vision-language tasks in seven languages: 71,400 texts, built by 13 researchers from six countries, with Radu Tudor Ionescu. I led the captioning study on four models and devised the method that taught three image generators six more languages, closing up to 92% of the gap to English.",
 };
 
 /** Short dated facts, shown as "what" on the left and "when" on the right. */
