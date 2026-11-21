@@ -1,73 +1,94 @@
 import type { ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { currentWork, lastUpdated, me, papers, profile, type Paper } from "@/content";
+import {
+  currentWork,
+  education,
+  experience,
+  honors,
+  lastUpdated,
+  me,
+  papers,
+  profile,
+  type Entry,
+  type Paper,
+} from "@/content";
 
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
   return (
-    <main className="mx-auto max-w-[860px] px-4 pt-10 pb-24 font-sans text-base leading-[1.6] text-body sm:pt-22">
-      <header className="flex items-center justify-between gap-6 pb-7 sm:pb-11">
-        <div>
-          <h1 className="text-[31px] leading-[1.1] font-semibold tracking-[-0.035em] text-foreground sm:text-[40px]">
-            {profile.name}
-          </h1>
-          <div className="mt-2 text-[17px] text-muted">{profile.role}</div>
-        </div>
+    <main className="mx-auto max-w-[760px] px-4 pt-8 pb-20 font-serif text-[17px] leading-[1.55] text-body sm:pt-16">
+      <header className="flex flex-col gap-5 sm:flex-row sm:gap-8">
         <img
           src={profile.photo}
           alt={profile.name}
-          width={84}
-          height={84}
-          className="size-16 shrink-0 rounded-full object-cover sm:size-21"
+          width={160}
+          height={160}
+          className="size-28 shrink-0 object-cover sm:size-40"
         />
+        <div>
+          <h1 className="text-[30px] leading-tight font-semibold text-foreground">
+            {profile.name}
+          </h1>
+          <div className="mt-1.5">
+            {profile.role.map((line) => (
+              <div key={line}>{line}</div>
+            ))}
+          </div>
+          <div className="mt-2.5">
+            <A href={`mailto:${profile.email}`}>{profile.email}</A>
+          </div>
+          <nav className="mt-0.5 flex flex-wrap gap-x-4 gap-y-0.5">
+            {profile.links.map((l) => (
+              <A key={l.label} href={l.href}>
+                {l.label}
+              </A>
+            ))}
+          </nav>
+        </div>
       </header>
 
-      <Row label="About">
-        <div className="max-w-[38em] space-y-3">
-          {profile.bio.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </div>
-      </Row>
+      <p className="mt-8">{profile.bio}</p>
 
-      <Row label="Publications">
-        <ul className="max-w-[40em] space-y-5">
+      <Section title="Publications">
+        <ol className="space-y-4">
           {papers.map((paper) => (
             <PaperItem key={paper.title} paper={paper} />
           ))}
-        </ul>
-      </Row>
+        </ol>
+      </Section>
 
-      <Row label="Current work">
-        <p className="max-w-[38em]">
+      <Section title="Current work">
+        <p>
           <b className="font-semibold text-foreground">{currentWork.title}.</b> {currentWork.text}
         </p>
-      </Row>
+      </Section>
 
-      <Row label="Contact">
-        <nav className="flex flex-wrap gap-x-5.5 gap-y-1.5">
-          <A href={`mailto:${profile.email}`}>{profile.email}</A>
-          {profile.links.map((l) => (
-            <A key={l.label} href={l.href}>
-              {l.label}
-            </A>
-          ))}
-        </nav>
-      </Row>
+      <Section title="Education">
+        <Entries items={education} />
+      </Section>
 
-      <footer className="border-t border-border pt-4.5 text-sm text-muted">
+      <Section title="Honors">
+        <Entries items={honors} />
+      </Section>
+
+      <Section title="Teaching and work">
+        <Entries items={experience} />
+      </Section>
+
+      <footer className="mt-12 border-t border-border pt-3 text-[15px] text-muted">
         Last updated {lastUpdated}
       </footer>
     </main>
   );
 }
 
-/** One labelled band of the page; the label sits in a left column from 640px up. */
-function Row({ label, children }: { label: string; children: ReactNode }) {
+function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="grid gap-x-6 gap-y-2 border-t border-border py-5.5 sm:grid-cols-[170px_1fr] sm:py-7.5">
-      <h2 className="pt-px text-[15px] font-normal text-muted">{label}</h2>
+    <section className="mt-9">
+      <h2 className="mb-3 border-b border-border pb-1 text-[21px] font-semibold text-foreground">
+        {title}
+      </h2>
       {children}
     </section>
   );
@@ -76,7 +97,7 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
 function PaperItem({ paper }: { paper: Paper }) {
   return (
     <li>
-      <a href={paper.href} className="font-medium text-foreground hover:text-accent">
+      <a href={paper.href} className="font-semibold text-accent hover:underline">
         {paper.title}
       </a>
       <div>
@@ -87,24 +108,38 @@ function PaperItem({ paper }: { paper: Paper }) {
           </span>
         ))}
       </div>
-      <div className="text-muted">{paper.venue}</div>
-      <div className="mt-0.5 flex gap-4">
+      <div>
+        <i>{paper.venue}</i>
         {paper.links.map((l) => (
-          <A key={l.label} href={l.href}>
-            {l.label}
-          </A>
+          <span key={l.label}>
+            {" "}
+            [<A href={l.href}>{l.label}</A>]
+          </span>
         ))}
       </div>
     </li>
   );
 }
 
+function Entries({ items }: { items: Entry[] }) {
+  return (
+    <ul className="space-y-2">
+      {items.map((e) => (
+        <li key={e.what} className="flex flex-col sm:flex-row sm:justify-between sm:gap-6">
+          <div>
+            {e.what}
+            {e.detail && <div className="text-muted">{e.detail}</div>}
+          </div>
+          <div className="shrink-0 text-muted tabular-nums">{e.when}</div>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function A({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <a
-      href={href}
-      className="text-foreground underline decoration-underline decoration-1 underline-offset-4 hover:text-accent hover:decoration-accent"
-    >
+    <a href={href} className="text-accent hover:underline">
       {children}
     </a>
   );
