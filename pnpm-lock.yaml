@@ -193,12 +193,6 @@ importers:
       '@fontsource/ibm-plex-sans':
         specifier: ^5.3.0
         version: 5.3.0
-      '@fontsource/noto-sans-arabic':
-        specifier: ^5.3.0
-        version: 5.3.0
-      '@fontsource/noto-sans-devanagari':
-        specifier: ^5.3.0
-        version: 5.3.0
       '@tanstack/react-router':
         specifier: ^1.170.46
         version: 1.170.46(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -330,12 +324,6 @@ packages:
 
   '@fontsource/ibm-plex-sans@5.3.0':
     resolution: {integrity: sha512-CbE4CbbEEZJX860XyUiRpsksXIQR8Rp2XDva2VO53NJox9tVNtusrysd2x5YkUEY3ErQ66W1IiiQL8/wihhw5w==}
-
-  '@fontsource/noto-sans-arabic@5.3.0':
-    resolution: {integrity: sha512-i3t6GR0LOReyJVEk+YfYCnxv53wuIelg7Y9NGNvOq4Diq/EP0YszaGXkQwfQNigLjfO4POrLaPGM0sNliGYk7A==}
-
-  '@fontsource/noto-sans-devanagari@5.3.0':
-    resolution: {integrity: sha512-7khYmipS/5KAUUmrO1DKir8yL8XI00d0+ZE9BqbS8XF1jzObv6CpPOk3UeYxF+Pvi8bx9bBvprBCOcbx/eQWTQ==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -2123,10 +2111,6 @@ snapshots:
   '@fontsource-variable/literata@5.3.0': {}
 
   '@fontsource/ibm-plex-sans@5.3.0': {}
-
-  '@fontsource/noto-sans-arabic@5.3.0': {}
-
-  '@fontsource/noto-sans-devanagari@5.3.0': {}
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
