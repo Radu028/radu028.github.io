@@ -6,6 +6,7 @@ export const me = "Radu Stefan Popa";
 
 export const profile = {
   name: me,
+  role: "Computer Science, University of Bucharest",
   email: "radupopa028@gmail.com",
   photo: "/photo.jpg",
   links: [
@@ -45,8 +46,8 @@ export const papers: Paper[] = [
     authors: [me, "Adina Camelia Bleotu", "Sergiu Nisioi"],
     venue: "NeurIPS 2026 Workshop on Linguistic Principles for Foundation Models (LP4FM), poster",
     links: [
-      { label: "paper", href: "https://openreview.net/forum?id=JitnCb895x" },
-      { label: "code", href: "https://github.com/Radu028/ro-childlm" },
+      { label: "Paper", href: "https://openreview.net/forum?id=JitnCb895x" },
+      { label: "Code", href: "https://github.com/Radu028/ro-childlm" },
     ],
   },
 ];

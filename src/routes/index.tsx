@@ -6,63 +6,68 @@ export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
   return (
-    <main className="mx-auto max-w-[800px] px-4 pt-8 pb-20 font-sans text-[15.5px] leading-[1.6] text-body sm:pt-14">
-      <header className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-        <h1 className="text-[26px] font-semibold tracking-[-0.01em] text-foreground">
-          {profile.name}
-        </h1>
-        <nav className="flex flex-wrap gap-x-5 gap-y-1">
-          <A href={`mailto:${profile.email}`}>Email</A>
+    <main className="mx-auto max-w-[860px] px-4 pt-10 pb-24 font-sans text-base leading-[1.6] text-body sm:pt-22">
+      <header className="flex items-center justify-between gap-6 pb-7 sm:pb-11">
+        <div>
+          <h1 className="text-[31px] leading-[1.1] font-semibold tracking-[-0.035em] text-foreground sm:text-[40px]">
+            {profile.name}
+          </h1>
+          <div className="mt-2 text-[17px] text-muted">{profile.role}</div>
+        </div>
+        <img
+          src={profile.photo}
+          alt={profile.name}
+          width={84}
+          height={84}
+          className="size-16 shrink-0 rounded-full object-cover sm:size-21"
+        />
+      </header>
+
+      <Row label="About">
+        <div className="max-w-[38em] space-y-3">
+          {profile.bio.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </div>
+      </Row>
+
+      <Row label="Publications">
+        <ul className="max-w-[40em] space-y-5">
+          {papers.map((paper) => (
+            <PaperItem key={paper.title} paper={paper} />
+          ))}
+        </ul>
+      </Row>
+
+      <Row label="Current work">
+        <p className="max-w-[38em]">
+          <b className="font-semibold text-foreground">{currentWork.title}.</b> {currentWork.text}
+        </p>
+      </Row>
+
+      <Row label="Contact">
+        <nav className="flex flex-wrap gap-x-5.5 gap-y-1.5">
+          <A href={`mailto:${profile.email}`}>{profile.email}</A>
           {profile.links.map((l) => (
             <A key={l.label} href={l.href}>
               {l.label}
             </A>
           ))}
         </nav>
-      </header>
+      </Row>
 
-      <section className="mt-8 flex flex-col gap-6 sm:flex-row sm:gap-8">
-        <img
-          src={profile.photo}
-          alt={profile.name}
-          width={176}
-          height={176}
-          className="size-32 shrink-0 rounded-md object-cover sm:size-44"
-        />
-        <div className="space-y-3.5">
-          {profile.bio.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-          <p className="text-muted">{profile.email}</p>
-        </div>
-      </section>
-
-      <Section title="Publications">
-        <ul className="space-y-5">
-          {papers.map((paper) => (
-            <PaperItem key={paper.title} paper={paper} />
-          ))}
-        </ul>
-      </Section>
-
-      <Section title="Current work">
-        <p>
-          <span className="font-semibold text-foreground">{currentWork.title}.</span>{" "}
-          {currentWork.text}
-        </p>
-      </Section>
-
-      <footer className="mt-14 border-t border-border pt-4 text-[13px] text-muted">
+      <footer className="border-t border-border pt-4.5 text-sm text-muted">
         Last updated {lastUpdated}
       </footer>
     </main>
   );
 }
 
-function Section({ title, children }: { title: string; children: ReactNode }) {
+/** One labelled band of the page; the label sits in a left column from 640px up. */
+function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <section className="mt-11">
-      <h2 className="mb-3.5 text-[19px] font-semibold text-foreground">{title}</h2>
+    <section className="grid gap-x-6 gap-y-2 border-t border-border py-5.5 sm:grid-cols-[170px_1fr] sm:py-7.5">
+      <h2 className="pt-px text-[15px] font-normal text-muted">{label}</h2>
       {children}
     </section>
   );
@@ -71,10 +76,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 function PaperItem({ paper }: { paper: Paper }) {
   return (
     <li>
-      <a
-        href={paper.href}
-        className="font-medium text-accent hover:underline hover:underline-offset-3"
-      >
+      <a href={paper.href} className="font-medium text-foreground hover:text-accent">
         {paper.title}
       </a>
       <div>
@@ -85,13 +87,12 @@ function PaperItem({ paper }: { paper: Paper }) {
           </span>
         ))}
       </div>
-      <div className="text-muted">
-        {paper.venue}
+      <div className="text-muted">{paper.venue}</div>
+      <div className="mt-0.5 flex gap-4">
         {paper.links.map((l) => (
-          <span key={l.label}>
-            {" "}
-            [<A href={l.href}>{l.label}</A>]
-          </span>
+          <A key={l.label} href={l.href}>
+            {l.label}
+          </A>
         ))}
       </div>
     </li>
@@ -100,7 +101,10 @@ function PaperItem({ paper }: { paper: Paper }) {
 
 function A({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <a href={href} className="text-accent hover:underline hover:underline-offset-3">
+    <a
+      href={href}
+      className="text-foreground underline decoration-underline decoration-1 underline-offset-4 hover:text-accent hover:decoration-accent"
+    >
       {children}
     </a>
   );

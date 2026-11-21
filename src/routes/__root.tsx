@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
-import sansUrl from "@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2?url";
+import sansUrl from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
 import appCss from "@/styles.css?url";
 import { profile } from "@/content";
 
