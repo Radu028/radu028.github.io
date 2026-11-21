@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react'
-import { createFileRoute } from '@tanstack/react-router'
-import { lastUpdated, me, ongoing, papers, profile, type Paper } from '@/content'
+import type { ReactNode } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { lastUpdated, me, ongoing, papers, profile, type Paper } from "@/content";
 
-export const Route = createFileRoute('/')({ component: Home })
+export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
   return (
@@ -34,7 +34,7 @@ function Home() {
 
       <footer className="mt-16 text-[13px] text-muted">Last updated {lastUpdated}</footer>
     </main>
-  )
+  );
 }
 
 function Header() {
@@ -62,16 +62,18 @@ function Header() {
         </nav>
       </div>
     </header>
-  )
+  );
 }
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="mt-13">
-      <h2 className="mb-1.5 text-[13px] font-semibold tracking-[0.07em] text-muted uppercase">{title}</h2>
+      <h2 className="mb-1.5 text-[13px] font-semibold tracking-[0.07em] text-muted uppercase">
+        {title}
+      </h2>
       {children}
     </section>
-  )
+  );
 }
 
 function PaperRow({ paper }: { paper: Paper }) {
@@ -85,7 +87,7 @@ function PaperRow({ paper }: { paper: Paper }) {
         <div className="mt-0.5">
           {paper.authors.map((a, i) => (
             <span key={a}>
-              {i > 0 && ', '}
+              {i > 0 && ", "}
               {a === me ? <b className="font-semibold text-foreground">{a}</b> : a}
             </span>
           ))}
@@ -100,7 +102,7 @@ function PaperRow({ paper }: { paper: Paper }) {
         </div>
       </div>
     </article>
-  )
+  );
 }
 
 function A({ href, children }: { href: string; children: ReactNode }) {
@@ -108,5 +110,5 @@ function A({ href, children }: { href: string; children: ReactNode }) {
     <a href={href} className="text-accent hover:underline hover:underline-offset-3">
       {children}
     </a>
-  )
+  );
 }
