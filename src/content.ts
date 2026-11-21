@@ -16,7 +16,7 @@ export const profile = {
     { label: "LinkedIn", href: "https://www.linkedin.com/in/radupopa28/" },
   ],
   bio: [
-    "I am a final-year Computer Science student at the University of Bucharest. I work on multimodal models and language models. With Radu Tudor Ionescu I work on vision-language models across languages, and with Sergiu Nisioi on small language models for Romanian.",
+    "I am a final-year Computer Science student at the University of Bucharest. I work on multimodal models and language models. With Radu Tudor Ionescu I work on vision-language models across languages, and with Sergiu Nisioi on small language models for Romanian. Since I started research in May 2026, I have worked on language models, image captioning and image generation, and each time I started from a problem that the group needed solved.",
     "Alongside my studies I work full-time as a software engineer at Liamis & HEB International and teach weekly algorithms classes at my faculty.",
   ],
 };
