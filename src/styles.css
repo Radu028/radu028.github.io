@@ -1,12 +1,18 @@
 @import "tailwindcss";
 @import "@fontsource-variable/source-serif-4/wght.css";
+/* The venue line is italic. Without this face the browser slants the upright one. */
+@import "@fontsource-variable/source-serif-4/wght-italic.css";
 
-/* Colors follow the system light/dark setting. */
+/*
+ * Colors follow the system light/dark setting. Text has three levels:
+ * foreground (name, headings, my name in author lists), body (prose) and
+ * muted (authors, dates, details). Muted stays at 7:1 or better on the background.
+ */
 :root {
   --background: #ffffff;
   --foreground: #111111;
   --body: #262626;
-  --muted: #666666;
+  --muted: #595959;
   --accent: #173f8a;
   --border: #d9d9d9;
 }
@@ -16,7 +22,7 @@
     --background: #121212;
     --foreground: #f2f2f2;
     --body: #d2d2d2;
-    --muted: #999999;
+    --muted: #a3a3a3;
     --accent: #9db8f5;
     --border: #333333;
   }
@@ -24,6 +30,9 @@
 
 @theme inline {
   --font-serif: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
+  /* `text-meta`: the smaller size for citation data, dates and details. */
+  --text-meta: 15.5px;
+  --text-meta--line-height: 1.5;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-body: var(--body);
