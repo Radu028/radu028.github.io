@@ -1,5 +1,5 @@
 // Everything the page says lives here, so text edits never touch layout code.
-// PaMuk-Bench stays current work with no venue or author list: the CVPR 2027
+// PaMuk-Bench is listed as an arXiv preprint and never names CVPR: the CVPR 2027
 // author guidelines say "you should not list CVPR submissions on public websites".
 
 export const me = "Radu Stefan Popa";
@@ -26,7 +26,7 @@ type Link = { label: string; href: string };
 export type Paper = {
   title: string;
   href: string;
-  /** The name equal to `me` is set in bold. */
+  /** The name equal to `me` is set in bold; a trailing "*" marks equal contribution. */
   authors: string[];
   venue: string;
   /** One sentence with the main result. */
@@ -35,6 +35,29 @@ export type Paper = {
 };
 
 export const papers: Paper[] = [
+  {
+    title: "PaMuk-Bench: A Parallel Multilingual Multitask Benchmark for Vision-Language Tasks",
+    href: "https://arxiv.org/abs/2611.27521",
+    authors: [
+      "Silviu-Florin Gheorghe*",
+      `${me}*`,
+      "Adriana Valentina Costache*",
+      "Adrian-Gabriel Chifu*",
+      "Alessia Amelio",
+      "Paul Irofti",
+      "Anders Skaarup Johansen",
+      "Lallouani Bouchakour",
+      "Mohamed Lichouri",
+      "Khaled Lounnas",
+      "Neelu Madan",
+      "Yashvir Malik",
+      "Radu Tudor Ionescu",
+    ],
+    venue: "Preprint, 2026. *Equal contribution.",
+    result:
+      "The first parallel benchmark to cover five vision-language tasks in seven languages: 71,400 texts, built by 13 researchers from six countries. I led the captioning study on four models and devised the method that taught three image generators six more languages, closing up to 92% of the gap to English.",
+    links: [{ label: "arXiv", href: "https://arxiv.org/abs/2611.27521" }],
+  },
   {
     title: "BLiMP-RO: A Benchmark of Linguistic Minimal Pairs for Romanian",
     href: "https://arxiv.org/abs/2611.17836",
@@ -57,11 +80,6 @@ export const papers: Paper[] = [
     ],
   },
 ];
-
-export const currentWork = {
-  title: "PaMuk-Bench",
-  text: "The first parallel benchmark to cover five vision-language tasks in seven languages: 71,400 texts, built by 13 researchers from six countries, with Radu Tudor Ionescu. I led the captioning study on four models and devised the method that taught three image generators six more languages, closing up to 92% of the gap to English.",
-};
 
 /** Short dated facts, shown as "what" on the left and "when" on the right. */
 export type Entry = { what: string; detail?: string; when: string };

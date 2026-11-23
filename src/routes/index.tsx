@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  currentWork,
   education,
   experience,
   honors,
@@ -62,12 +61,6 @@ function Home() {
         </ol>
       </Section>
 
-      <Section title="Current work">
-        <p>
-          <b className="font-semibold text-foreground">{currentWork.title}.</b> {currentWork.text}
-        </p>
-      </Section>
-
       <Section title="Education">
         <Entries items={education} />
       </Section>
@@ -108,7 +101,7 @@ function PaperItem({ paper }: { paper: Paper }) {
         {paper.authors.map((a, i) => (
           <span key={a}>
             {i > 0 && ", "}
-            {a === me ? <b className="font-semibold text-foreground">{a}</b> : a}
+            {a.replace(/\*$/, "") === me ? <b className="font-semibold text-foreground">{a}</b> : a}
           </span>
         ))}
       </div>
