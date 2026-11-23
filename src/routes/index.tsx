@@ -23,7 +23,7 @@ export const Route = createFileRoute("/")({ component: Home });
 // each paper's result, in the `prose` gray. Quietest: authors, dates and details,
 // smaller and in the `muted` gray.
 //
-// Gaps grow with the distance between ideas: up to 8px inside a paper, 12px
+// Gaps grow with the distance between ideas: up to 6px inside a paper, 12px
 // between dated entries, 28px between papers, 52px between sections (40px on
 // phones). The text column is at most 640px, up to 78 characters per line.
 // `max-[23rem]` rules cover phones under 368px.
@@ -40,7 +40,9 @@ function Home() {
           height={148}
           className="size-[72px] object-cover max-[23rem]:size-[56px] sm:row-span-2 sm:size-[148px]"
         />
-        <div>
+        {/* Under 13rem of viewport (a phone with the browser font doubled) the name
+            takes a full row, so it is not split mid-word beside the photo. */}
+        <div className="max-[13rem]:col-span-2">
           <h1 className="text-[1.625rem] leading-tight font-semibold text-foreground max-[23rem]:text-[1.5rem] sm:text-[2rem]">
             {profile.name}
           </h1>
@@ -176,7 +178,7 @@ function Entries({ items }: { items: Entry[] }) {
       {items.map((e) => (
         <li
           key={e.what}
-          className="grid break-inside-avoid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-5 max-[23rem]:block"
+          className="grid break-inside-avoid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-3 max-[23rem]:block sm:gap-x-5"
         >
           <div>{e.what}</div>
           <div className="text-meta text-muted tabular-nums">{e.when}</div>

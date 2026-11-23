@@ -62,7 +62,7 @@ export const papers: Paper[] = [
     ],
     venue: "Preprint, 2026. *Equal contribution.",
     result:
-      "The first parallel benchmark to cover five vision-language tasks in seven languages: 71,400 texts, built by 13 researchers from six countries. I led the captioning study on four models and **devised the method** that taught three image generators six more languages, **closing up to 92% of the gap to English**.",
+      "The first parallel benchmark to cover five vision-language tasks in seven languages: 71,400 texts, built by 13 researchers from six countries. I led the captioning study on four models and **devised the method that taught three image generators six more languages, closing up to 92% of the gap to English**.",
     links: [
       { label: "arXiv", href: "https://arxiv.org/abs/2611.27521" },
       { label: "code", href: "https://github.com/ghesil/pamuk_bench" },
@@ -83,7 +83,7 @@ export const papers: Paper[] = [
     authors: [me, "Adina Camelia Bleotu", "Sergiu Nisioi"],
     venue: "NeurIPS 2026 Workshop on Linguistic Principles for Foundation Models (LP4FM), poster.",
     result:
-      "A corpus of **10M words from 2,100 hours** of Romanian children's video, **ten times larger than any Romanian dataset of its kind** before it, with language models trained on it from scratch.",
+      "A corpus of **10M words from 2,100 hours** of Romanian children's video, **ten times larger than any Romanian dataset of its kind before it**, with language models trained on it from scratch.",
     links: [
       { label: "paper", href: "https://openreview.net/forum?id=JitnCb895x" },
       { label: "code", href: "https://github.com/Radu028/ro-childlm" },
