@@ -5,8 +5,8 @@
 
 /*
  * Colors follow the system light/dark setting. Text has four levels, from most
- * to least prominent: foreground (name, headings, lead, key phrases), body (role,
- * venues, entry names), prose (the bio and paper results around the key phrases)
+ * to least prominent: foreground (name, headings, lead, my name in author lists), body (role,
+ * venues, entry names), prose (the bio and paper results)
  * and muted (authors, dates, details). Muted stays at 7:1 or better on the
  * background, prose at 9.7:1 or better.
  */

@@ -17,11 +17,11 @@ export const Route = createFileRoute("/")({ component: Home });
 // Type sizes and the column width are in rem, so they follow the reader's
 // browser font size. The pixel values in these comments assume the usual 16px.
 //
-// Prominence follows importance. Most prominent: the name, headings, the lead,
-// paper titles and the key phrases marked in content.ts, all in the foreground
-// color (paper titles in the accent color). Quieter, at body size: the bio and
-// each paper's result, in the `prose` gray. Quietest: authors, dates and details,
-// smaller and in the `muted` gray.
+// Prominence follows importance. Most prominent: the name, headings and the lead
+// in the foreground color, and paper titles in the accent color. Quieter, at body
+// size: the bio and each paper's result, in the `prose` gray. Quietest: authors,
+// dates and details, smaller and in the `muted` gray. Nothing inside a paragraph
+// is bolded, so the prose reads as plain statements.
 //
 // Gaps grow with the distance between ideas: up to 6px inside a paper, 12px
 // between dated entries, 28px between papers, 52px between sections (40px on
@@ -71,7 +71,7 @@ function Home() {
         <div className="mt-3.5 space-y-3 text-prose">
           {profile.bio.map((p) => (
             <p key={p} className="text-pretty">
-              <Rich text={p} />
+              {p}
             </p>
           ))}
         </div>
@@ -115,8 +115,8 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-// Ordered by what a reader needs first: the title, then the result with its key
-// phrases, then the citation data (authors, venue, links) in the smaller
+// Ordered by what a reader needs first: the title, then the result, then the
+// citation data (authors, venue, links) in the smaller
 // `text-meta` size. A long author list would otherwise push the result far down.
 function PaperItem({ paper }: { paper: Paper }) {
   return (
@@ -129,9 +129,7 @@ function PaperItem({ paper }: { paper: Paper }) {
           {paper.title}
         </a>
       </h3>
-      <p className="mt-1.5 text-pretty text-prose">
-        <Rich text={paper.result} />
-      </p>
+      <p className="mt-1.5 text-pretty text-prose">{paper.result}</p>
       <div className="mt-1.5 text-meta text-muted">
         {paper.authors.map((a, i) => (
           <Fragment key={a}>
@@ -186,21 +184,6 @@ function Entries({ items }: { items: Entry[] }) {
         </li>
       ))}
     </ul>
-  );
-}
-
-// Renders text from content.ts, setting each **marked** key phrase in the
-// foreground color at medium weight.
-function Rich({ text }: { text: string }) {
-  // split() with one capture group alternates plain text and key phrases.
-  return text.split(/\*\*(.+?)\*\*/).map((part, i) =>
-    i % 2 === 1 ? (
-      <strong key={part} className="font-medium text-foreground">
-        {part}
-      </strong>
-    ) : (
-      part
-    ),
   );
 }
 
