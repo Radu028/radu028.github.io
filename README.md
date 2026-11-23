@@ -1,4 +1,4 @@
-# radu028.github.io
+# Homepage
 
 Radu Stefan Popa's academic homepage. One static page, built with TanStack Start, Tailwind CSS and Vite+ (pnpm), and published on GitHub Pages.
 
