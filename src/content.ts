@@ -1,10 +1,12 @@
-// Everything the page says lives here, so text edits never touch layout code.
+// The page's text lives here, so text edits never touch layout code. Only the
+// section headings and the "Last updated" label are in the layout.
 // PaMuk-Bench is listed as an arXiv preprint and never names CVPR: the CVPR 2027
 // author guidelines say "you should not list CVPR submissions on public websites".
 //
-// In `lead`, `bio` and each paper's `result`, **double asterisks** mark a key phrase.
-// The page sets those phrases dark and the rest of the bio and result text gray, so a
-// skimming reader lands on them. Keep to one or two short phrases per paragraph.
+// In `bio` and each paper's `result`, **double asterisks** mark a key phrase. The
+// page sets those phrases in the foreground color and the text around them gray,
+// so a skimming reader lands on them. Keep to one or two phrases per paragraph,
+// and pick phrases that stay true when read without the rest of the sentence.
 
 export const me = "Radu Stefan Popa";
 
@@ -20,9 +22,9 @@ export const profile = {
     { label: "LinkedIn", href: "https://www.linkedin.com/in/radupopa28/" },
   ],
   /** The opening statement, set larger than the bio. */
-  lead: "I work on multimodal models and language models. I am **ranked first of 282 students** in my year.",
+  lead: "I work on multimodal models and language models. I am ranked first of 282 students in my year.",
   bio: [
-    "I started research in May 2026. In the seven months since, I have been **first author of two papers** on Romanian language models, with Sergiu Nisioi, and **co-first author of PaMuk-Bench**, a vision-language benchmark in seven languages, with Radu Tudor Ionescu. I do this alongside a full-time job as a software engineer and weekly teaching at my faculty.",
+    "I started research in May 2026. In the seven months since, I have been **first author of two papers on Romanian language models**, with Sergiu Nisioi, and **co-first author of PaMuk-Bench**, a vision-language benchmark in seven languages, with Radu Tudor Ionescu. I do this alongside a full-time job as a software engineer and weekly teaching at my faculty.",
   ],
 };
 
@@ -60,7 +62,7 @@ export const papers: Paper[] = [
     ],
     venue: "Preprint, 2026. *Equal contribution.",
     result:
-      "The first parallel benchmark to cover five vision-language tasks in seven languages: 71,400 texts, built by 13 researchers from six countries. **I led the captioning study** on four models and devised the method that taught three image generators six more languages, **closing up to 92% of the gap to English**.",
+      "The first parallel benchmark to cover five vision-language tasks in seven languages: 71,400 texts, built by 13 researchers from six countries. I led the captioning study on four models and **devised the method** that taught three image generators six more languages, **closing up to 92% of the gap to English**.",
     links: [
       { label: "arXiv", href: "https://arxiv.org/abs/2611.27521" },
       { label: "code", href: "https://github.com/ghesil/pamuk_bench" },
@@ -72,7 +74,7 @@ export const papers: Paper[] = [
     authors: [me, "Valentin Feroiu", "Adina Camelia Bleotu", "Sergiu Nisioi"],
     venue: "Preprint, 2026.",
     result:
-      "**The first Romanian benchmark of minimal pairs** written by linguists and tested on native speakers: 50 phenomena, over 6,400 pairs, **over 40,000 human judgments**.",
+      "The first Romanian benchmark of minimal pairs **written by linguists** and tested on native speakers: 50 phenomena, over 6,400 pairs, **over 40,000 human judgments**.",
     links: [{ label: "arXiv", href: "https://arxiv.org/abs/2611.17836" }],
   },
   {
@@ -81,7 +83,7 @@ export const papers: Paper[] = [
     authors: [me, "Adina Camelia Bleotu", "Sergiu Nisioi"],
     venue: "NeurIPS 2026 Workshop on Linguistic Principles for Foundation Models (LP4FM), poster.",
     result:
-      "A corpus of **10M words from 2,100 hours** of Romanian children's video, **ten times larger** than any Romanian dataset of its kind before it, with language models trained on it from scratch.",
+      "A corpus of **10M words from 2,100 hours** of Romanian children's video, **ten times larger than any Romanian dataset of its kind** before it, with language models trained on it from scratch.",
     links: [
       { label: "paper", href: "https://openreview.net/forum?id=JitnCb895x" },
       { label: "code", href: "https://github.com/Radu028/ro-childlm" },
