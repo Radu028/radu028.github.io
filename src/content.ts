@@ -56,7 +56,10 @@ export const papers: Paper[] = [
     venue: "Preprint, 2026. *Equal contribution.",
     result:
       "The first parallel benchmark to cover five vision-language tasks in seven languages: 71,400 texts, built by 13 researchers from six countries. I led the captioning study on four models and devised the method that taught three image generators six more languages, closing up to 92% of the gap to English.",
-    links: [{ label: "arXiv", href: "https://arxiv.org/abs/2611.27521" }],
+    links: [
+      { label: "arXiv", href: "https://arxiv.org/abs/2611.27521" },
+      { label: "code", href: "https://github.com/ghesil/pamuk_bench" },
+    ],
   },
   {
     title: "BLiMP-RO: A Benchmark of Linguistic Minimal Pairs for Romanian",
