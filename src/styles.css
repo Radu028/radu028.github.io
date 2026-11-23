@@ -4,17 +4,15 @@
 @import "@fontsource-variable/source-serif-4/wght-italic.css";
 
 /*
- * Colors follow the system light/dark setting. Text has four levels, from most
- * to least prominent: foreground (name, headings, lead, my name in author lists), body (role,
- * venues, entry names), prose (the bio and paper results)
- * and muted (authors, dates, details). Muted stays at 7:1 or better on the
- * background, prose at 9.7:1 or better.
+ * Colors follow the system light/dark setting. Text has three levels, from most
+ * to least prominent: foreground (name, headings, lead, my name in author lists),
+ * body (role, bio, paper results, venues, entry names) and muted (authors, dates,
+ * details, footer). Muted stays at 7:1 or better on the background.
  */
 :root {
   --background: #ffffff;
   --foreground: #111111;
   --body: #262626;
-  --prose: #444444;
   --muted: #595959;
   --accent: #173f8a;
   --border: #d9d9d9;
@@ -26,7 +24,6 @@
     --background: #121212;
     --foreground: #f2f2f2;
     --body: #d2d2d2;
-    --prose: #bdbdbd;
     --muted: #a3a3a3;
     --accent: #9db8f5;
     --border: #333333;
@@ -35,13 +32,12 @@
 
 @theme inline {
   --font-serif: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
-  /* `text-meta`: the smaller size (15.5px) for citation data, dates and details. */
+  /* `text-meta`: the smaller size (15.5px) for citation data, dates, details and the footer. */
   --text-meta: 0.96875rem;
   --text-meta--line-height: 1.5;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-body: var(--body);
-  --color-prose: var(--prose);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-border: var(--border);

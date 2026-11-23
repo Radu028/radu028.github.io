@@ -18,16 +18,17 @@ export const Route = createFileRoute("/")({ component: Home });
 // browser font size. The pixel values in these comments assume the usual 16px.
 //
 // Prominence follows importance. Most prominent: the name, headings and the lead
-// in the foreground color, and paper titles in the accent color. Quieter, at body
-// size: the bio and each paper's result, in the `prose` gray. Quietest: authors,
-// dates and details, smaller and in the `muted` gray. Nothing inside a paragraph
-// is bolded, so the prose reads as plain statements.
+// in the foreground color, and paper titles in the accent color. Then the bio,
+// each paper's result and the entry names, in the body color. Quietest: authors,
+// dates, details and the footer, smaller and in the `muted` gray. Nothing inside
+// a paragraph is bolded, so the prose reads as plain statements.
 //
 // Gaps grow with the distance between ideas: up to 6px inside a paper, 12px
 // between dated entries, 28px between papers, 52px between sections (40px on
 // phones). The text column is at most 640px, up to 78 characters per line.
 // `max-[23rem]` rules cover phones under 368px.
 function Home() {
+  const [emailUser, emailDomain] = profile.email.split("@");
   return (
     <div className="mx-auto max-w-[42.5rem] px-5 pt-8 pb-20 font-serif text-[1.0625rem] leading-[1.55] wrap-break-word text-body sm:pt-16 print:py-0">
       {/* Phone: a small photo beside the name, contacts on a full-width row below.
@@ -53,7 +54,12 @@ function Home() {
           </div>
         </div>
         <div className="col-span-2 sm:col-span-1 sm:col-start-2">
-          <A href={`mailto:${profile.email}`}>{profile.email}</A>
+          <A href={`mailto:${profile.email}`}>
+            {/* <wbr> lets the address break after "@" when the reader's font is
+                enlarged, instead of in the middle of the domain. */}
+            {emailUser}@<wbr />
+            {emailDomain}
+          </A>
           <nav className="mt-0.5 flex flex-wrap gap-x-3 gap-y-0.5 sm:gap-x-[18px]">
             {profile.links.map((l) => (
               <A key={l.label} href={l.href}>
@@ -68,7 +74,7 @@ function Home() {
         <p className="mt-7 text-[1.1875rem] leading-[1.45] text-pretty text-foreground sm:text-[1.25rem]">
           {profile.lead}
         </p>
-        <div className="mt-3.5 space-y-3 text-prose">
+        <div className="mt-3.5 space-y-3">
           {profile.bio.map((p) => (
             <p key={p} className="text-pretty">
               {p}
@@ -97,7 +103,7 @@ function Home() {
         </Section>
       </main>
 
-      <footer className="mt-14 border-t border-border pt-3 text-[0.90625rem] text-muted print:mt-4">
+      <footer className="mt-14 border-t border-border pt-3 text-meta text-muted print:mt-4">
         Last updated {lastUpdated}
       </footer>
     </div>
@@ -115,9 +121,11 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-// Ordered by what a reader needs first: the title, then the result, then the
-// citation data (authors, venue, links) in the smaller
-// `text-meta` size. A long author list would otherwise push the result far down.
+// Ordered by what a professor looks for first: the title, where it appeared
+// (venue and links), what it found (the result), then who wrote it. The venue
+// and authors use the smaller `text-meta` size. The authors come last because a
+// long list would otherwise push the result far down, and my own name is bold
+// in it.
 function PaperItem({ paper }: { paper: Paper }) {
   return (
     <li className="break-inside-avoid">
@@ -129,7 +137,22 @@ function PaperItem({ paper }: { paper: Paper }) {
           {paper.title}
         </a>
       </h3>
-      <p className="mt-1.5 text-pretty text-prose">{paper.result}</p>
+      <div className="mt-0.5 text-meta">
+        <i>{paper.venue}</i>{" "}
+        {/* nowrap keeps "[paper] [code]" together when the venue fills the line. */}
+        <span className="whitespace-nowrap">
+          {paper.links.map((l, i) => (
+            <Fragment key={l.label}>
+              {i > 0 && " "}[
+              <A href={l.href} label={`${l.label}: ${paper.title}`}>
+                {l.label}
+              </A>
+              ]
+            </Fragment>
+          ))}
+        </span>
+      </div>
+      <p className="mt-1.5 text-pretty">{paper.result}</p>
       <div className="mt-1.5 text-meta text-muted">
         {paper.authors.map((a, i) => (
           <Fragment key={a}>
@@ -147,21 +170,6 @@ function PaperItem({ paper }: { paper: Paper }) {
             </span>
           </Fragment>
         ))}
-      </div>
-      <div className="mt-0.5 text-meta">
-        <i>{paper.venue}</i>{" "}
-        {/* nowrap keeps "[paper] [code]" together when the venue fills the line. */}
-        <span className="whitespace-nowrap">
-          {paper.links.map((l, i) => (
-            <Fragment key={l.label}>
-              {i > 0 && " "}[
-              <A href={l.href} label={`${l.label}: ${paper.title}`}>
-                {l.label}
-              </A>
-              ]
-            </Fragment>
-          ))}
-        </span>
       </div>
     </li>
   );
